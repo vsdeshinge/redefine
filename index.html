@@ -1,0 +1,293 @@
+<!-- PART 1: HEAD + HEADER + HERO -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REDEFINE Group</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bold-red: #CE171F;
+      --oil-black: #0C0C0C;
+      --gray: #d9d9d9;
+      --light-bg: #f5f5f5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg); color: var(--oil-black);
+      overflow-x: hidden;
+    }
+    header {
+      background: white; padding: 20px 40px; position: sticky; top: 0; z-index: 999;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    header img { height: 40px; }
+    nav a {
+      color: var(--oil-black); margin: 0 15px;
+      text-decoration: none; font-weight: 600;
+    }
+    .hero { width: 100%; height: 100vh; position: relative; }
+    .heroSwiper { width: 100%; height: 100%; }
+    .hero .swiper-slide {
+      display: flex; justify-content: center; align-items: center;
+      padding: 0 20px; text-align: center;
+      background-size: cover; background-position: center;
+    }
+    .hero-content {
+      max-width: 800px; color: white;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero h1 { font-size: 2.8rem; margin-bottom: 20px; }
+    .hero p { font-size: 1.2rem; margin-bottom: 30px; }
+    .cta-buttons a {
+      margin: 10px; padding: 12px 24px;
+      background: var(--bold-red); color: white;
+      text-decoration: none; border-radius: 6px; display: inline-block;
+    }
+    .swiper-pagination-bullet { background-color: white; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <img src="logo.png" alt="Redefine Logo">
+  <nav>
+    <a href="#">Home</a><a href="#">About</a><a href="#">What We Do</a>
+    <a href="#">Industries</a><a href="#">Impact</a><a href="#">Contact</a>
+  </nav>
+</header>
+<section class="hero">
+  <div class="swiper heroSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background: url('1.jpg') center / cover no-repeat;">
+        <div class="hero-content">
+          <h1>Empowering Enterprises to Become Competitive</h1>
+          <p>From strategy to execution, we help businesses evolve and thrive.</p>
+          <div class="cta-buttons">
+            <a href="#">Explore Our Services</a>
+            <a href="#">Book a Discovery Call</a>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide" style="background: url('2.jpg') center / cover no-repeat;">
+        <div class="hero-content">
+          <h1>Redefining Sustainability and ESG Transformation</h1>
+          <p>We guide responsible growth aligned with global sustainability goals.</p>
+          <div class="cta-buttons">
+            <a href="#">Know More</a><a href="#">Talk to Our Experts</a>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide" style="background: url('1.jpg') center / cover no-repeat;">
+        <div class="hero-content">
+          <h1>Driving Excellence in Manufacturing & Operations</h1>
+          <p>Transform your shop floor with lean, agile, and smart solutions.</p>
+          <div class="cta-buttons">
+            <a href="#">Start the Journey</a><a href="#">Case Studies</a>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide" style="background: url('2.jpg') center / cover no-repeat;">
+        <div class="hero-content">
+          <h1>Building Skills for the Workforce of Tomorrow</h1>
+          <p>Our upskilling programs bridge today’s talent to tomorrow’s needs.</p>
+          <div class="cta-buttons">
+            <a href="#">Explore Programs</a><a href="#">Partner With Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- PART 2: SERVICES + MAP + FOOTER -->
+<style>
+  .services { background: var(--light-bg); text-align: center; padding: 60px 40px; }
+  .services h2 { color: var(--bold-red); margin-bottom: 40px; }
+  .swiper { padding-bottom: 40px; }
+  .swiper-slide.service-card {
+    background: white; border: 1px solid var(--gray);
+    border-radius: 8px; text-align: left; padding: 20px; width: 280px;
+  }
+  .swiper-slide img {
+    width: 100%; height: 160px; object-fit: cover;
+    border-radius: 6px; margin-bottom: 15px;
+  }
+  .swiper-slide h3 { color: var(--bold-red); font-size: 1.1rem; margin-bottom: 10px; }
+  .swiper-slide p { font-size: 0.9rem; }
+  #world-map-section { width: 100%; height: 800px; position: relative; overflow: hidden; }
+  #map { width: 100%; height: 100%; }
+  .leaflet-interactive {
+    stroke-dasharray: 5; stroke: #797979 !important;
+    animation: dash 20s linear infinite;
+  }
+  @keyframes dash { to { stroke-dashoffset: 1000; } }
+  .leaflet-popup-content {
+    animation: fadeInUp 0.4s ease-in-out;
+    font-family: 'Open Sans', sans-serif; font-size: 0.9rem; color: #0C0C0C;
+  }
+  .leaflet-popup-content strong {
+    font-family: 'Poppins', sans-serif; font-size: 1rem;
+  }
+  .testimonials {
+    background: var(--gray); text-align: center; padding: 60px 20px;
+  }
+  .testimonial-quote {
+    font-style: italic; margin-top: 20px; font-size: 1rem;
+  }
+  footer {
+    background-color: var(--bold-red); color: white;
+    text-align: center; padding: 40px 20px;
+  }
+  footer a {
+    background: white; color: var(--bold-red);
+    padding: 12px 24px; border-radius: 6px;
+    text-decoration: none; font-weight: 600;
+  }
+</style>
+
+<section class="services">
+  <h2>Our Services</h2>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide service-card">
+        <img src="https://via.placeholder.com/280x160?text=Transformation" alt="Business Transformation">
+        <h3>Business Transformation</h3>
+        <p>Reinvent strategy, structure, and systems to thrive in the digital economy.</p>
+      </div>
+      <div class="swiper-slide service-card">
+        <img src="https://via.placeholder.com/280x160?text=Manufacturing" alt="Manufacturing Excellence">
+        <h3>Manufacturing Excellence</h3>
+        <p>Drive operational efficiency and productivity through lean practices.</p>
+      </div>
+      <div class="swiper-slide service-card">
+        <img src="https://via.placeholder.com/280x160?text=Engagement" alt="Employee Engagement">
+        <h3>Employee Engagement</h3>
+        <p>Foster a culture of ownership and performance among your workforce.</p>
+      </div>
+      <div class="swiper-slide service-card">
+        <img src="https://via.placeholder.com/280x160?text=ESG" alt="Sustainability">
+        <h3>ESG & Sustainability</h3>
+        <p>Build a responsible business aligned with ESG goals and SDGs.</p>
+      </div>
+      <div class="swiper-slide service-card">
+        <img src="https://via.placeholder.com/280x160?text=Reputation" alt="Reputation Management">
+        <h3>Reputation Management</h3>
+        <p>Safeguard your brand image through proactive reputation strategies.</p>
+      </div>
+      <div class="swiper-slide service-card">
+        <img src="https://via.placeholder.com/280x160?text=Skilling" alt="Skill Development">
+        <h3>Skill Development</h3>
+        <p>Equip teams with future-ready skills through strategic skilling programs.</p>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<section id="world-map-section"><div id="map"></div></section>
+
+<section class="testimonials">
+  <h2>What Our Clients Say</h2>
+  <div class="testimonial-quote">
+    “Their ability to combine operational insight with deep human understanding makes REDEFINE truly different.”<br>
+    — Client Name, Title
+  </div>
+</section>
+
+<footer>
+  <h2>Looking to transform your business or workforce?</h2>
+  <a href="#">Start a Conversation</a>
+  <p style="margin-top: 20px;">&copy; 2025 REDEFINE Group. All Rights Reserved.</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  new Swiper('.heroSwiper', {
+    loop: true, effect: 'fade',
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true }
+  });
+
+  new Swiper('.mySwiper', {
+    loop: true,
+    slidesPerView: 1.2, spaceBetween: 20,
+    autoplay: { delay: 2500, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: {
+      768: { slidesPerView: 2.5 },
+      1024: { slidesPerView: 3.2 }
+    }
+  });
+
+  const map = L.map('map', {
+    zoomControl: false, dragging: false,
+    scrollWheelZoom: false, doubleClickZoom: false,
+    boxZoom: false, touchZoom: false
+  }).setView([20, 75], 3.5);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; CARTO', subdomains: 'abcd', maxZoom: 19
+  }).addTo(map);
+
+  const countries = [
+    { name: 'UAE', coords: [24.4667, 54.3667], desc: 'Innovation hub in the Gulf' },
+    { name: 'Jordan', coords: [31.95, 35.9333], desc: 'Gateway to the Middle East' },
+    { name: 'India', coords: [28.6139, 77.2090], desc: 'Technology and talent powerhouse' },
+    { name: 'Bangladesh', coords: [23.8103, 90.4125], desc: 'Emerging digital economy' },
+    { name: 'Mauritius', coords: [-20.3484, 57.5522], desc: 'Strategic African outpost' },
+    { name: 'Indonesia', coords: [-6.2000, 106.8167], desc: 'Southeast Asia’s growth engine' },
+    { name: 'Africa', coords: [9.145, 40.4897], desc: 'Expanding frontier market' }
+  ];
+
+  const customIcon = L.icon({
+    iconUrl: 'mapicon.svg',
+    iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -30]
+  });
+
+  const markers = countries.map(c =>
+    L.marker(c.coords, { icon: customIcon })
+      .addTo(map)
+      .bindPopup(`<strong>${c.name}</strong><br>${c.desc}`)
+  );
+
+  function drawArc(from, to) {
+    const latlngs = [], steps = 100;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const lat = from[0] * (1 - t) + to[0] * t + Math.sin(Math.PI * t) * 10;
+      const lng = from[1] * (1 - t) + to[1] * t;
+      latlngs.push([lat, lng]);
+    }
+    L.polyline(latlngs, {
+      color: '#CE171F', weight: 2, opacity: 0.8,
+      className: 'leaflet-interactive'
+    }).addTo(map);
+  }
+
+  for (let i = 0; i < countries.length; i++) {
+    for (let j = i + 1; j < countries.length; j++) {
+      drawArc(countries[i].coords, countries[j].coords);
+    }
+  }
+
+  let currentIndex = 0;
+  setInterval(() => {
+    map.closePopup();
+    markers[currentIndex].openPopup();
+    currentIndex = (currentIndex + 1) % markers.length;
+  }, 3000);
+</script>
+</body>
+</html>
