@@ -55,6 +55,38 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+
+    .popup-content {
+  max-width: 250px;
+  font-family: 'Open Sans', sans-serif;
+}
+.popup-content h3 {
+  font-family: 'Poppins', sans-serif;
+  color: #CE171F;
+  margin-bottom: 6px;
+}
+.popup-content p {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.popupSwiper {
+  width: 100%;
+  height: 120px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.popupSwiper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: popupFade 0.5s ease-in-out;
+}
+@keyframes popupFade {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
@@ -196,7 +228,7 @@
 </section>
 
 <section id="world-map-section">
-    <h1>Global Footprint</h3>
+    <h3>Global Footprint</h3>
     <div id="map"></div>
 </section>
 
@@ -262,7 +294,20 @@
   const markers = countries.map(c =>
     L.marker(c.coords, { icon: customIcon })
       .addTo(map)
-      .bindPopup(`<strong>${c.name}</strong><br>${c.desc}`)
+      .bindPopup(`
+  <div class="popup-content">
+    <h3>${c.name}</h3>
+    <p>${c.desc}</p>
+    <div class="swiper popupSwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="images/${c.name.toLowerCase()}1.jpg" alt="${c.name} 1" /></div>
+        <div class="swiper-slide"><img src="images/${c.name.toLowerCase()}2.jpg" alt="${c.name} 2" /></div>
+        <div class="swiper-slide"><img src="images/${c.name.toLowerCase()}3.jpg" alt="${c.name} 3" /></div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+`)
   );
 
   function drawArc(from, to) {
@@ -291,6 +336,15 @@
     markers[currentIndex].openPopup();
     currentIndex = (currentIndex + 1) % markers.length;
   }, 3000);
+
+  map.on('popupopen', () => {
+  new Swiper('.popupSwiper', {
+    loop: true,
+    autoplay: { delay: 2000 },
+    pagination: { el: '.swiper-pagination', clickable: true }
+  });
+});
+
 </script>
 </body>
 </html>
