@@ -16,6 +16,7 @@
     background-color: var(--light-bg);
     color: var(--oil-black);
     overflow-x: hidden;
+    align-items: center;
   }
   
 
@@ -169,6 +170,7 @@
     background-color: var(--teal-blue);
     font-family: 'Lato', sans-serif;
     text-align: center;
+    align-items: center;
   }
   
   .redefine-title {
@@ -193,10 +195,13 @@
   /* ===== Responsive Grid ===== */
   .simple-redefine-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* fluid width */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     justify-items: center;
+    width: 70vw;
+    margin: 0 auto; /* ✅ This centers the grid inside parent */
   }
+  
   
   /* ===== Card Styles ===== */
   .redefine-card {
