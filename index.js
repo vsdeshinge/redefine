@@ -1,3 +1,22 @@
+  // Hamburger toggle
+  document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.querySelector(".hamburger");
+    const nav = document.querySelector("nav");
+    const header = document.querySelector("header");
+
+    hamburger.addEventListener("click", () => {
+      nav.classList.toggle("active");
+    });
+
+    window.addEventListener("scroll", () => {
+      header.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  });
+
+
+
+
+
 // ===== Swiper Initialization =====
 new Swiper('.heroSwiper', {
     loop: true,
@@ -70,6 +89,19 @@ new Swiper('.heroSwiper', {
         </div>
       `)
   );
+
+  // ===== 📱 Mobile Auto-Fit View =====
+const bounds = L.latLngBounds(countries.map(c => c.coords));
+
+if (window.innerWidth <= 768) {
+  map.fitBounds(bounds, {
+    padding: [5, 5],
+    maxZoom: 4
+  });
+} else {
+  map.setView([20, 75], 3.5); // your original center & zoom
+}
+
   
   // ===== Animated Arcs Between Countries =====
   function drawArc(from, to) {
