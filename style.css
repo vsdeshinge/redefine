@@ -299,6 +299,7 @@ h2{
     text-align: center;
     padding: 60px 40px;
     font-family: 'Lato', sans-serif;
+    font-weight: 400;
   }
   
   .services h2 {
@@ -326,6 +327,7 @@ h2{
     border: 1px solid var(--gray);
     display: flex;
     flex-direction: column;
+    font-weight: 400;
   }
   
   .service-card img {
@@ -534,6 +536,7 @@ h2{
     color: #0C0C0C;
     max-width: 90%;
     margin: 0 auto;
+    font-weight: 400;
   }
   
 
