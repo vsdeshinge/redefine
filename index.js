@@ -143,28 +143,7 @@ if (window.innerWidth <= 768) {
   });
 
 
-  new Swiper('.clientsSwiper', {
-    slidesPerView: 4,
-    spaceBetween: 24,
-    loop: true,
-    breakpoints: {
-      1024: { slidesPerView: 4 },
-      768: { slidesPerView: 2 },
-      0: { slidesPerView: 1 }
-    }
-  });
-  
-  new Swiper('.testimonialsSwiper', {
-    slidesPerView: 3,
-    spaceBetween: 24,
-    loop: true,
-    breakpoints: {
-      1024: { slidesPerView: 3 },
-      768: { slidesPerView: 2 },
-      0: { slidesPerView: 1 }
-    }
-  });
-  
+ 
   
   // ===== Header Scroll Effect =====
   window.addEventListener("scroll", function () {
@@ -172,3 +151,23 @@ if (window.innerWidth <= 768) {
     header.classList.toggle("scrolled", window.scrollY > 50);
   });
   
+
+
+
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwMHxyOmSe9-aSJdKeitstRUR3ExmHzuRFKAQr641lOW0uwCs3yzdzpMwoLnA7kQhS3Zg/exec';
+    const form = document.getElementById('registerForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+  
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+          form.style.display = 'none';
+          thankYouMessage.style.display = 'block';
+        })
+        .catch(error => {
+          alert('There was an error! ' + error.message);
+        });
+    });
