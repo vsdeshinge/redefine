@@ -239,21 +239,19 @@
       </div>
   
       <!-- Right Column -->
-      <div class="register-right">
-        <form id="registerForm">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="tel" name="phone" placeholder="Phone Number" required />
-          <input type="email" name="email" placeholder="Email Address" required />
-          <textarea name="description" placeholder="Tell us about yourself..." required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-        <div id="thankYouMessage">
-          <h3>Thank you for registering!</h3>
-          <p>We'll get back to you soon.</p>
-        </div>
+      <form id="registerForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <textarea name="description" placeholder="Tell us about yourself..." required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      
+      <div id="thankYouMessage" style="display: none;">
+        <h3>Thank you for registering!</h3>
+        <p>We'll get back to you soon.</p>
       </div>
-    </div>
-  </section>
+      
   
   
   
@@ -292,13 +290,52 @@
     <p style="margin-top: 20px;">&copy; 2025 REDEFINE Group. All Rights Reserved.</p>
 
   </footer>
-  
+
+
+
+
   
 
   <!-- External Scripts -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
   <script src="index.js"></script>
+  <script>
+    //const scriptURL = 'https://sheetdb.io/api/v1/udz9z8y4mcxdj';
+    const form = document.getElementById('registerForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+  
+    thankYouMessage.style.display = 'none'; // Hide initially
+  
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const formData = new FormData(form);
+      const dataObject = {};
+      formData.forEach((value, key) => dataObject[key] = value);
+  
+      fetch(scriptURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data: dataObject })  // SheetDB expects this format
+      })
+      .then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          thankYouMessage.style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again later.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error submitting the form.');
+      });
+    });
+  </script>
+  
 
 </body>
 

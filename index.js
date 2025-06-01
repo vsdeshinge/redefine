@@ -149,19 +149,6 @@ if (window.innerWidth <= 768) {
 
 
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwMHxyOmSe9-aSJdKeitstRUR3ExmHzuRFKAQr641lOW0uwCs3yzdzpMwoLnA7kQhS3Zg/exec';
-    const form = document.getElementById('registerForm');
-    const thankYouMessage = document.getElementById('thankYouMessage');
-  
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      fetch(scriptURL, { method: 'POST', body: formData })
-        .then(response => {
-          form.style.display = 'none';
-          thankYouMessage.style.display = 'block';
-        })
-        .catch(error => {
-          alert('There was an error! ' + error.message);
-        });
-    });
+
+
+   

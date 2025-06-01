@@ -361,12 +361,12 @@ h2{
     transform: translateX(6px);
   }
   
-  .service-box p {
-    font-size: 15px;
+  .service-card p {
+    font-size: 16px;
     color: var(--oil-black);
-    line-height: 1.6;
+    line-height: 1.5;
+    margin: 0 16px 20px;
   }
-  
   
   /* ===== Mobile Responsive: 1x6 Stacked Cards ===== */
   @media (max-width: 768px) {
