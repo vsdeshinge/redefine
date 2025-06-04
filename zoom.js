@@ -409,3 +409,45 @@ tl.to(".intro-subtitle", {
   duration: 1,
   ease: "power1.inOut"
 }, "+=0.1");
+
+
+
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const wrapper = document.querySelector(".swiper-wrapper");
+    const slides = document.querySelectorAll(".swiper-slide");
+
+    let current = 1; // Start with the middle slide
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove("active-card");
+        slide.classList.add("fade-card");
+
+        if (index === current) {
+          slide.classList.add("active-card");
+          slide.classList.remove("fade-card");
+        }
+      });
+
+      const containerHeight = document.querySelector('.swiper-container').offsetHeight;
+      const cardHeight = slides[0].offsetHeight;
+      const spacing = 32; // your gap
+
+// calculate to center the current card
+const offset = -current * (cardHeight + spacing) + (containerHeight / 2 - cardHeight / 2);
+wrapper.style.transform = `translateY(${offset}px)`;
+
+      wrapper.style.transform = `translateY(${offset}px)`;
+    }
+
+    function autoScroll() {
+      current = (current + 1) % slides.length;
+      updateSlides();
+    }
+
+    updateSlides();
+    setInterval(autoScroll, 4000); // Change every 4s
+  });
+
